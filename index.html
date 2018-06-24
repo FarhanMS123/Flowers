@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>Flowers Project | Next Science</title>
+		
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta class="tc" name="theme-color" content="#000000">
+		
+		<link rel="shortcut icon" href="flower.png">
+		
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	
+		<style>
+			@keyframes prgmove {
+				0%{left:-50%;width:50%}
+				70%{left:110%;width:100%}
+				70.01%{left:-100%;width:100%}
+				100%{left:100%;width:50%}
+			}
+		</style>
+	
+		<script>
+			var img, ad;
+			$(document).ready(function(){
+				var ip=$("img[src='flower.png']").parent();
+				setInterval(function(){
+					ip.css({
+						left:`calc((100% - ${ip.width()}px)/2)`,
+						top:`calc((100% - ${ip.height()}px)/2)`
+					});
+				},100);
+				$(window).on("resize", function(){
+					ip.css({
+						left:`calc((100% - ${ip.width()}px)/2)`,
+						top:`calc((100% - ${ip.height()}px)/2)`
+					});
+					img.css({left:`calc((100% - ${img.width()}px)/2)`});
+				});
+				var act = false, x=0;
+				$("#act").on("click", function(){
+					//if(img == undefined){
+						img = $(document.createElement("img"));
+						img[0].src = "image.jpg"
+						img.css({position:"fixed",top:"0px",height:"100%","z-index":1022});
+						document.body.append(img[0]);
+						setInterval(function(){
+							img.css({left:`calc((100% - ${img.width()}px)/2)`});
+						},100);
+						ad = $(document.createElement("audio"));
+						ad[0].src = "scream.mp3";
+						ad[0].autoplay = true;
+						ad[0].loop = true;
+						ad[0].preload = "auto";
+						ad.css("display", "none");
+						document.body.append(ad[0]);
+						ad[0].play();
+					//}
+				})
+			});
+		</script>
+	</head>
+	<body style="background:black;width:calc(100% - 10px);">
+		<div id="act" style="position:fixed;background:transparent;width:100%;height:100%;top:0px;left:0px;z-index:1024;"></div>
+		<div id="spl" style="max-width:400px;width:100%;position:absolute;">
+			<img src="flower.png" style="width:100%;"></img>
+			<p style="color:white;text-align:center;font:'Arial'">Please Wait...</p>
+			<div style="width:100%;height:10px;overflow:hidden;">
+				<div style="width:50%;height:100%;background:#3498db;position:relative;left:-50%;animation:prgmove 3s ease-out infinite;"></div>
+			</div>
+		</div>
+	</body>
+</html>
