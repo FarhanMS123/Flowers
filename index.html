@@ -39,7 +39,7 @@
 						left:`calc((100% - ${ip.width()}px)/2)`,
 						top:`calc((100% - ${ip.height()}px)/2)`
 					});
-					img.css({left:`calc((100% - ${img.width()}px)/2)`});
+					img.css({left:`calc((100% - ${img.width()*Math.random()}px)/2)`});
 				});
 				var act = false, x=0;
 				$("#act").on("click", function(){
@@ -49,7 +49,7 @@
 						img.css({position:"fixed",top:"0px",height:"100%","z-index":1022});
 						document.body.append(img[0]);
 						setInterval(function(){
-							img.css({left:`calc((100% - (${img.width()*Math.random()})px)/2)`});
+							img.css({left:`calc((100% - (${img.width()})px)/2)`});
 						},100);
 						ad = $(document.createElement("audio"));
 						ad[0].src = "scream.mp3";
